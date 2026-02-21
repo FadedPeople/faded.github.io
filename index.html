@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Silent Pages</title>
+<title>Silent Fairy</title>
 
 <style>
 body{
 margin:0;
-background:linear-gradient(#06060f,#141428);
+background:radial-gradient(circle at center,#101028,#04040a);
 font-family:Georgia, serif;
 color:white;
-height:100vh;
+height_toggle:100vh;
 overflow:hidden;
 }
 
@@ -18,16 +18,16 @@ overflow:hidden;
 h1{
 text-align:center;
 margin-top:20px;
-letter-spacing:3px;
-opacity:0.7;
+letter-spacing:4px;
+opacity:0.6;
 }
 
-/* 🌧 Rain */
+/* Rain */
 .rain{
 position:absolute;
 width:2px;
 height:80px;
-background:linear-gradient(transparent, rgba(255,255,255,0.4));
+background:linear-gradient(transparent, rgba(255,255,255,0.3));
 animation:rainFall linear infinite;
 }
 @keyframes rainFall{
@@ -35,37 +35,71 @@ from{transform:translateY(-100vh);}
 to{transform:translateY(100vh);}
 }
 
-/* Character */
+/* Fairy glow */
+.glow{
+position:absolute;
+bottom:120px;
+left:50%;
+transform:translateX(-50%);
+width:260px;
+height:260px;
+background:radial-gradient(circle, rgba(180,180,255,0.25), transparent);
+filter:blur(40px);
+animation:pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse{
+0%{opacity:0.5;}
+50%{opacity:1;}
+100%{opacity:0.5;}
+}
+
+/* Fairy */
 .character{
 position:absolute;
 bottom:0;
 left:50%;
 transform:translateX(-50%);
 height:480px;
-animation:float 5s ease-in-out infinite;
+animation:float 6s ease-in-out infinite;
 }
 
-/* floating fairy motion */
 @keyframes float{
 0%{transform:translateX(-50%) translateY(0);}
-50%{transform:translateX(-50%) translateY(-12px);}
+50%{transform:translateX(-50%) translateY(-18px);}
 100%{transform:translateX(-50%) translateY(0);}
 }
 
-/* Speech bubble */
+/* magic particles */
+.spark{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+opacity:0.7;
+animation:sparkMove linear infinite;
+}
+
+@keyframes sparkMove{
+from{transform:translateY(0);}
+to{transform:translateY(-120px);opacity:0;}
+}
+
+/* speech bubble */
 .bubble{
 position:absolute;
 bottom:380px;
 left:55%;
 max-width:260px;
-background:rgba(0,0,0,0.65);
+background:rgba(0,0,0,0.6);
 padding:15px;
 border-radius:15px;
 opacity:0;
 transition:0.4s;
 }
 
-/* Input area */
+/* input */
 .input-area{
 position:absolute;
 bottom:20px;
@@ -85,7 +119,7 @@ border-radius:8px;
 button{
 padding:10px 14px;
 border:none;
-background:#444;
+background:#555;
 color:white;
 border-radius:8px;
 cursor:pointer;
@@ -95,30 +129,39 @@ cursor:pointer;
 
 <body>
 
-<h1>Silent Pages</h1>
+<h1>Silent Fairy</h1>
 
-<!-- Character -->
+<div class="glow"></div>
+
 <img class="character"
 src="https://i.imgur.com/8Km9tLL.png">
 
-<!-- Speech Bubble -->
 <div class="bubble" id="bubble"></div>
 
-<!-- User Input -->
 <div class="input-area">
-<input id="userInput" placeholder="Talk to me...">
+<input id="userInput" placeholder="Talk to the fairy...">
 <button onclick="talk()">Send</button>
 </div>
 
 <script>
 
-/* 🌧 Rain creation */
-for(let i=0;i<80;i++){
+/* Rain */
+for(let i=0;i<70;i++){
 let rain=document.createElement("div");
 rain.className="rain";
 rain.style.left=Math.random()*100+"vw";
-rain.style.animationDuration=(0.5+Math.random())+"s";
+rain.style.animationDuration=(0.6+Math.random())+"s";
 document.body.appendChild(rain);
+}
+
+/* Fairy sparkles */
+for(let i=0;i<25;i++){
+let s=document.createElement("div");
+s.className="spark";
+s.style.left=(45+Math.random()*10)+"vw";
+s.style.bottom=(100+Math.random()*120)+"px";
+s.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(s);
 }
 
 const bubble=document.getElementById("bubble");
@@ -128,7 +171,6 @@ function typeText(text){
 bubble.style.opacity=1;
 bubble.innerHTML="";
 let i=0;
-
 let typing=setInterval(()=>{
 bubble.innerHTML+=text.charAt(i);
 i++;
@@ -136,24 +178,23 @@ if(i>=text.length) clearInterval(typing);
 },35);
 }
 
-/* AI personality */
+/* Fairy personality */
 function reply(msg){
-
 msg=msg.toLowerCase();
 
 if(msg.includes("hello")||msg.includes("hi"))
-return "You came… I thought no one would.";
+return "Oh… someone found me.";
 
 if(msg.includes("sad"))
-return "Sadness is where poems are born.";
+return "I collect sadness… it glows like starlight.";
 
 if(msg.includes("alone"))
-return "Then stay… we can be alone together.";
+return "Then sit with me… I dislike being alone too.";
 
 if(msg.includes("love"))
-return "Love fades… words remain.";
+return "Love turns into memories… memories become stories.";
 
-return "Speak more… I want to hear your story.";
+return "Tell me more… your words feel warm.";
 }
 
 function talk(){
@@ -169,8 +210,8 @@ input.value="";
 
 /* first message */
 setTimeout(()=>{
-typeText("…Hello stranger.");
-},1200);
+typeText("…I have been waiting in the rain.");
+},1500);
 
 </script>
 
