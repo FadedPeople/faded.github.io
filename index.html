@@ -28,6 +28,14 @@ bottom:0;
 left:50%;
 transform:translateX(-50%);
 height:420px;
+animation:breathe 4s ease-in-out infinite;
+}
+
+/* breathing animation */
+@keyframes breathe{
+0%{transform:translateX(-50%) scale(1);}
+50%{transform:translateX(-50%) scale(1.03);}
+100%{transform:translateX(-50%) scale(1);}
 }
 
 /* Chat box */
