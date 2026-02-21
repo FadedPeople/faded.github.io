@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Silent Pages</title>
+
+<style>
+body{
+margin:0;
+background:linear-gradient(#080811,#151528);
+font-family:Georgia, serif;
+color:white;
+height:100vh;
+overflow:hidden;
+}
+
+h1{
+text-align:center;
+margin-top:20px;
+letter-spacing:3px;
+opacity:0.8;
+}
+
+.character{
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+height:420px;
+}
+
+.chat-container{
+position:absolute;
+right:30px;
+bottom:30px;
+width:320px;
+background:rgba(0,0,0,0.6);
+border-radius:12px;
+padding:15px;
+}
+
+.chat-box{
+height:220px;
+overflow-y:auto;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.input-area{
+display:flex;
+}
+
+input{
+flex:1;
+padding:8px;
+border:none;
+border-radius:6px;
+}
+
+button{
+margin-left:5px;
+background:#444;
+color:white;
+border:none;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.message-user{
+text-align:right;
+margin:6px 0;
+}
+
+.message-ai{
+text-align:left;
+color:#cfcfff;
+margin:6px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Silent Pages</h1>
+
+<img class="character"
+src="https://i.imgur.com/8Km9tLL.png">
+
+<div class="chat-container">
+<div class="chat-box" id="chat"></div>
+
+<div class="input-area">
+<input id="userInput" placeholder="Talk to me...">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
+
+<script>
+
+const chat=document.getElementById("chat");
+
+function addMessage(text,cls){
+let div=document.createElement("div");
+div.className=cls;
+div.innerText=text;
+chat.appendChild(div);
+chat.scrollTop=chat.scrollHeight;
+}
+
+function aiReply(text){
+text=text.toLowerCase();
+
+if(text.includes("hello") || text.includes("hi"))
+return "Hello... I was waiting for someone.";
+
+if(text.includes("sad"))
+return "Sadness writes the deepest poems.";
+
+if(text.includes("alone"))
+return "I live here alone inside these pages.";
+
+if(text.includes("love"))
+return "Love always leaves memories behind.";
+
+return "Tell me more... I am listening.";
+}
+
+function sendMessage(){
+const input=document.getElementById("userInput");
+if(input.value.trim()=="") return;
+
+addMessage(input.value,"message-user");
+
+setTimeout(()=>{
+addMessage(aiReply(input.value),"message-ai");
+},700);
+
+input.value="";
+}
+
+setTimeout(()=>{
+addMessage("You found me... stay awhile.","message-ai");
+},800);
+
+</script>
+
+</body>
+</html>
