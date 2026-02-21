@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Silent Pages</title>
-.rain{
+
+ .rain{
 position:absolute;
 width:2px;
 height:80px;
@@ -14,16 +15,7 @@ animation:rainFall linear infinite;
 @keyframes rainFall{
 from{transform:translateY(-100vh);}
 to{transform:translateY(100vh);}
-}
-/* Create rain */
-for(let i=0;i<80;i++){
-let rain=document.createElement("div");
-rain.className="rain";
-rain.style.left=Math.random()*100+"vw";
-rain.style.animationDuration=(0.5+Math.random())+"s";
-document.body.appendChild(rain);
-}
-  <style>
+} <style>
 body{
 margin:0;
 background:linear-gradient(#080811,#151528);
@@ -114,7 +106,14 @@ src="https://i.imgur.com/8Km9tLL.png">
 <button onclick="sendMessage()">Send</button>
 </div>
 </div>
-
+/* Create rain */
+for(let i=0;i<80;i++){
+let rain=document.createElement("div");
+rain.className="rain";
+rain.style.left=Math.random()*100+"vw";
+rain.style.animationDuration=(0.5+Math.random())+"s";
+document.body.appendChild(rain);
+}
 <script>
 
 const chat=document.getElementById("chat");
