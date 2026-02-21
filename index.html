@@ -3,8 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Silent Pages</title>
+.rain{
+position:absolute;
+width:2px;
+height:80px;
+background:linear-gradient(transparent, rgba(255,255,255,0.4));
+animation:rainFall linear infinite;
+}
 
-<style>
+@keyframes rainFall{
+from{transform:translateY(-100vh);}
+to{transform:translateY(100vh);}
+}
+/* Create rain */
+for(let i=0;i<80;i++){
+let rain=document.createElement("div");
+rain.className="rain";
+rain.style.left=Math.random()*100+"vw";
+rain.style.animationDuration=(0.5+Math.random())+"s";
+document.body.appendChild(rain);
+}
+  <style>
 body{
 margin:0;
 background:linear-gradient(#080811,#151528);
