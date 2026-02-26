@@ -27,14 +27,15 @@ backgroundAlpha: 0
 
 document.body.appendChild(app.view);
 
+/* LOAD YOUR LIVE2D MODEL */
 PIXI.live2d.Live2DModel.from(
-"./FOLDERNAME/model3.json"
+"./Asuka.model3.json"
 ).then(model => {
 
 model.anchor.set(0.5,1);
 model.x = window.innerWidth/2;
 model.y = window.innerHeight;
-model.scale.set(0.3);
+model.scale.set(0.25);
 
 app.stage.addChild(model);
 
