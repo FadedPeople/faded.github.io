@@ -1,43 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Fairy</title>
-
-<script src="https://unpkg.com/pixi.js@5/dist/pixi.min.js"></script>
-<script src="https://unpkg.com/pixi-live2d-display/dist/index.min.js"></script>
-
+<title>Fairy Loading</title>
 <style>
 body{
 margin:0;
 background:#0b0b1a;
-overflow:hidden;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
 }
 </style>
 </head>
-
 <body>
 
-<script>
-const app = new PIXI.Application({
-view: document.body,
-autoStart: true,
-resizeTo: window,
-backgroundAlpha: 0
-});
-
-PIXI.live2d.Live2DModel.from(
-"./ASUKA.rar/model3.json"
-).then(model => {
-
-app.stage.addChild(model);
-
-model.x = window.innerWidth/2;
-model.y = window.innerHeight*0.9;
-model.scale.set(0.3);
-
-});
-</script>
+<h2>Fairy is preparing to appear...</h2>
 
 </body>
 </html>
