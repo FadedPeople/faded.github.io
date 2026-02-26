@@ -4,43 +4,63 @@
 <meta charset="UTF-8">
 <title>Lonely Fairy</title>
 
-<script src="https://unpkg.com/pixi.js@5/dist/pixi.min.js"></script>
-<script src="https://unpkg.com/pixi-live2d-display/dist/index.min.js"></script>
-
 <style>
 body{
-margin:0;
-background:#0b0b1a;
-overflow:hidden;
+    margin:0;
+    overflow:hidden;
+    background:black;
+    font-family:Arial;
+}
+
+#chatBox{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+input{
+    padding:10px;
+    width:250px;
 }
 </style>
+
+<!-- PIXI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
+
+<!-- LIVE2D CORE (VERY IMPORTANT) -->
+<script src="https://unpkg.com/pixi-live2d-display/dist/live2d.min.js"></script>
+
 </head>
 
 <body>
 
-<script>
+<div id="chatBox">
+<input id="userInput" placeholder="Talk to the lonely fairy...">
+</div>
 
+<script>
 const app = new PIXI.Application({
-resizeTo: window,
-backgroundAlpha: 0
+    width: window.innerWidth,
+    height: window.innerHeight,
+    transparent: true
 });
 
 document.body.appendChild(app.view);
 
-/* LOAD YOUR LIVE2D MODEL */
-PIXI.live2d.Live2DModel.from(
-"./Asuka.model3.json"
-).then(model => {
+// ⭐ CHANGE ONLY THIS LINE IF NEEDED
+const modelURL = "./Asuka.model3.json";
 
-model.anchor.set(0.5,1);
-model.x = window.innerWidth/2;
-model.y = window.innerHeight;
-model.scale.set(0.25);
+PIXI.live2d.Live2DModel.from(modelURL).then(model => {
 
-app.stage.addChild(model);
+    model.scale.set(0.3);
+    model.x = window.innerWidth / 2;
+    model.y = window.innerHeight * 0.9;
+    model.anchor.set(0.5,1);
+
+    app.stage.addChild(model);
 
 });
-
 </script>
 
 </body>
