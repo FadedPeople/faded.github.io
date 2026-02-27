@@ -9,16 +9,17 @@ body{
     margin:0;
     background:black;
     color:white;
+    overflow:hidden;
 }
 </style>
 
 <!-- PIXI -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
 
-<!-- ✅ REAL Cubism Core -->
+<!-- Cubism Core -->
 <script src="https://cdn.jsdelivr.net/npm/live2d-cubismcore@4.2.01/dist/live2dcubismcore.min.js"></script>
 
-<!-- ✅ Live2D Display -->
+<!-- Live2D Display -->
 <script src="https://unpkg.com/pixi-live2d-display/dist/index.min.js"></script>
 
 </head>
@@ -44,7 +45,8 @@ document.getElementById("status").innerText =
 
     try {
 
-       const model = await PIXI.live2d.Live2DModel.from("./Asuka/Asuka.model3.json");
+        // ✅ CORRECT PATH (model is beside index.html)
+        const model = await PIXI.live2d.Live2DModel.from("./Asuka.model3.json");
 
         model.scale.set(0.25);
         model.x = window.innerWidth / 2;
