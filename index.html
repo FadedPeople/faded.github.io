@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TEST</title>
+<meta charset="UTF-8">
+<title>Lonely Fairy Test</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    font-size:30px;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
+
 </head>
 
-<body style="background:black;color:white;font-size:40px;">
-HELLO — PAGE IS WORKING
+<body>
+
+<div id="text">Canvas loading...</div>
+
+<script>
+const app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundColor: 0x000000
+});
+
+document.body.appendChild(app.view);
+
+document.getElementById("text").innerHTML =
+"✅ PIXI WORKING — next we add fairy";
+</script>
+
 </body>
 </html>
