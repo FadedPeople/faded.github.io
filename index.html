@@ -2,36 +2,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lonely Fairy Test</title>
+<title>Lonely Fairy</title>
 
 <style>
 body{
     margin:0;
     background:black;
     color:white;
-    font-size:30px;
 }
 </style>
 
+<!-- PIXI -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
+
+<!-- ✅ REAL Cubism Core -->
+<script src="https://cdn.jsdelivr.net/npm/live2d-cubismcore@4.2.01/dist/live2dcubismcore.min.js"></script>
+
+<!-- ✅ Live2D Display -->
+<script src="https://unpkg.com/pixi-live2d-display/dist/index.min.js"></script>
 
 </head>
 
 <body>
 
-<div id="text">Canvas loading...</div>
+<div id="status" style="position:absolute;top:20px;left:20px;">
+Loading fairy...
+</div>
 
 <script>
 const app = new PIXI.Application({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    resizeTo: window,
     backgroundColor: 0x000000
 });
 
 document.body.appendChild(app.view);
 
-document.getElementById("text").innerHTML =
-"✅ PIXI WORKING — next we add fairy";
+document.getElementById("status").innerText =
+"✅ Engine loaded — trying fairy...";
+
+(async () => {
+
+    try {
+
+        const model = await PIXI.live2d.Live2DModel.from("./Asuka.model3.json");
+
+        model.scale.set(0.25);
+        model.x = window.innerWidth / 2;
+        model.y = window.innerHeight * 0.95;
+        model.anchor.set(0.5,1);
+
+        app.stage.addChild(model);
+
+        document.getElementById("status").innerText =
+        "✨ Fairy loaded successfully";
+
+    } catch(e) {
+
+        document.getElementById("status").innerText =
+        "❌ Model failed to load";
+        console.error(e);
+    }
+
+})();
 </script>
 
 </body>
